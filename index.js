@@ -2,7 +2,11 @@ const express = require("express")
 const app = express();
 
 app.get("/",function(req,res){
-    res.send("Seja bem vindo ao meu app")
+    res.sendFile(__dirname+"/html/index.html")
+})
+
+app.get("/sobre",function(req, res){
+    res.sendFile(__dirname+"/html/sobre.html")
 })
 
 app.get("/index", function(req,res){
@@ -15,6 +19,8 @@ app.get("/ola/:nome/:sobrenome/:sobre", function(req,res){
         sobrenome: req.params.sobrenome,
         sobre: req.params.sobre
     }
+
+    //só pode chamar o send apenas uma unica vez em uma rota
     res.send("Ola "+ pessoa.nome + " " + pessoa.sobrenome + " " + pessoa.sobre)
 })
 
